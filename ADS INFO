@@ -1,0 +1,142 @@
+📄 Automated Document Summarizer using Gemini AI
+--------------------------------------------------------------------------------------------------------------------------
+🔍 PROJCT OVERVIEW
+
+This project is a Streamlit-based web application that allows users to:
+1.Upload PDF documents
+2.Generate automatic summaries using Google's Gemini AI
+3.Interact with the summarized content by asking questions and receiving intelligent answers
+
+The system uses Google's Gemini 1.5 models to perform both:
+* Summarization of uploaded documents
+* Context-aware Q&A based on the generated summaries
+--------------------------------------------------------------------------------------------------------------------------
+
+🧠 How the App Works – Flow Overview
+
+flowchart TD
+    A[User uploads PDF] --> B[PDF is saved temporarily]
+    B --> C[File is uploaded to Gemini AI API]
+    C --> D[Gemini AI generates summary]
+    D --> E[Summary is shown on Streamlit UI]
+    E --> F[User inputs a question]
+    F --> G[Gemini AI answers using summary context]
+    G --> H[Answer is displayed on UI]
+--------------------------------------------------------------------------------------------------------------------------
+
+🧱 Project Structure
+bash
+
+automated-document-summarizer/
+│
+├── .env                   # Contains the API key securely
+├── app.py                 # Main Streamlit app
+├── requirements.txt       # Python dependencies
+└── README.md              # Project documentation (you’re writing this!)
+--------------------------------------------------------------------------------------------------------------------------
+
+🧰 Tech Stack
+Python
+Streamlit – for the web UI
+Google Generative AI SDK (Gemini API)
+dotenv – for securely loading API keys
+tempfile/pathlib – for temporary file management
+--------------------------------------------------------------------------------------------------------------------------
+
+🔐 API Key Integration
+1. Create a .env file in your project root directory:
+env
+GEMINI_API_KEY=your_gemini_api_key_here
+
+2. The app uses python-dotenv to load this key:
+python
+from dotenv import load_dotenv
+load_dotenv()
+API_KEY = os.getenv("GEMINI_API_KEY")
+
+3. The API key is used to initialize the Gemini client:
+python
+client = genai.Client(api_key=API_KEY)
+--------------------------------------------------------------------------------------------------------------------------
+
+🧪 How to Run the App in VS Code
+
+✅ Prerequisites
+Install Python 3.8+
+
+Install VS Code with Python extension
+
+Obtain your Gemini API key
+
+⚙️ Step-by-Step Instructions
+1. Clone or download the repository
+
+bash
+git clone https://github.com/yourusername/automated-document-summarizer.git
+cd automated-document-summarizer
+
+2. Set up a virtual environment
+bash
+python -m venv venv
+source venv/bin/activate   # On Windows: venv\Scripts\activate
+
+3.Install dependencies
+bash
+pip install -r requirements.txt
+
+4. Create .env file and add your API key
+env
+GEMINI_API_KEY=your_real_gemini_api_key
+
+5. Run the Streamlit app
+bash
+streamlit run app.py
+
+6. Open your browser and go to the provided localhost URL (usually http://localhost:8501)
+--------------------------------------------------------------------------------------------------------------------------
+📦 requirements.txt
+Here’s a sample requirements.txt to include in your project:
+
+txt
+streamlit
+google-generativeai
+python-dotenv
+
+Install it using:
+
+bash
+pip install -r requirements.txt
+--------------------------------------------------------------------------------------------------------------------------
+
+💡 Features
+Simple UI for document uploads
+Secure API key handling via .env
+Uses Gemini's file.upload and generate_content() methods
+Summarization happens automatically with a click
+Follow-up Q&A with memory of the summary context
+--------------------------------------------------------------------------------------------------------------------------
+📤 Optional: Deploy on Streamlit Cloud
+* You can deploy the project using Streamlit Community Cloud. Just make sure to:
+* Push your project to GitHub
+* Add your .env variables via Streamlit Cloud secrets manager
+--------------------------------------------------------------------------------------------------------------------------
+
+🧾 Example Output
+Input: Upload a long PDF report
+
+Output: A neat summary in natural language
+
+Q&A: Ask “What is the main conclusion?” or “List key statistics,” and get accurate answers
+--------------------------------------------------------------------------------------------------------------------------
+
+🛡️ Security Tips
+Never commit your .env file or API key to GitHub
+
+Add .env to your .gitignore:
+
+bash
+
+.env
+--------------------------------------------------------------------------------------------------------------------------
+
+
